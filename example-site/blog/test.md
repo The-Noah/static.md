@@ -1,5 +1,5 @@
 ---
-title: Test - My Website
+title: Test
 description: Test page of my website
 author: The Noah
 ---

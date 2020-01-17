@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title><%= title %></title>
+  <title><%= title %> - <%= siteName %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="index, follow">
   <% if (locals.description){ %><meta name="description" content="<%= description %>"><% } %>
@@ -12,7 +12,7 @@
 </head>
 <body>
   <header>
-    <a href="/index.html" class="logo">My Blog</a>
+    <a href="/index.html" class="logo"><%= siteName %></a>
     <span style="flex:1 0"></span>
     <nav>
       <a href="/index.html">Home</a>

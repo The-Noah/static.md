@@ -9,7 +9,8 @@ const colorConsole = require("./lib/color-console");
 
 let config = {
   src: "src",
-  dist: "dist"
+  dist: "dist",
+  siteName: "My Blog"
 };
 
 let configPath = "static.md.config.json";
@@ -40,7 +41,7 @@ glob("**/*.md", {cwd: config.src}, (err, files) => {
     return colorConsole.error("error: unable to get source markdown files");
   }
 
-  const render = require("./lib/render")(config.src, files.filter((file) => path.parse(file).name !== "index").map((file) => {
+  const render = require("./lib/render")(config, files.filter((file) => path.parse(file).name !== "index").map((file) => {
     const page = path.parse(file);
 
     const fileContent = lineEndingConverter(fs.readFileSync(path.join(config.src, file), "utf8"));

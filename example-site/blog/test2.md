@@ -1,5 +1,5 @@
 ---
-title: Test 2 - My Website
+title: Test 2
 description: Second test page of my website
 author: The Noah
 ---
