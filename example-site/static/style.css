@@ -1,0 +1,106 @@
+body{
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  color: #666;
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+h1, h2, h3{
+  margin-top: 0;  
+}
+
+h1, h2{
+  color: #222;
+}
+
+h3, b{
+  color: #333;
+}
+
+a{
+  color: #444;
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: underline;
+}
+
+header{
+  width: 100vw;
+  height: 64px;
+  padding: 0 64px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-shadow: 0 1px 4px rgba(39, 44, 49, .1);
+}
+
+header .logo{
+  font-weight: 300;
+  font-size: 1.3em;
+}
+
+header nav a{
+  padding: 8px 24px;
+}
+
+footer{
+  padding: 22px 10vw;
+  background-color: #F0F0F0;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.content{
+  width: 65vw;
+  margin: 42px auto;
+  padding: 12px 32px;
+  background-color: #FFF;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+.pages{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: auto;
+  grid-gap: 2rem;
+}
+
+.page{
+  padding: 18px 22px;
+  box-shadow: 0 14px 38px rgba(39, 44, 49, .07), 0 4px 8px rgba(39, 44, 49, .03);
+  cursor: pointer;
+  transition: .1s box-shadow;
+}
+
+.page:hover{
+  box-shadow: 0 14px 48px rgba(39, 44, 49, .1), 0 4px 12px rgba(39, 44, 49, .05);
+}
+
+.page h2{
+  margin: 0;
+}
+
+.page a:hover{
+  text-decoration: none;
+}
+
+@media screen and (max-width: 768px){
+  body{
+    font-size: 16px;
+  }
+
+  .content{
+    width: 95vw;
+    margin: 16px auto;
+    padding: 2px 16px;
+  }
+}

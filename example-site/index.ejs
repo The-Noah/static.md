@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title><%= title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <% if (locals.description){ %><meta name="description" content="<%= description %>"><% } %>
+  <% if (locals.author){ %><meta name="author" content="<%= author %>"><% } %>
+  <% if (locals.keywords){ %><meta name="keywords" content="<%= keywords %>"><% } %>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <a href="/index.html" class="logo">My Blog</a>
+    <span style="flex:1 0"></span>
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="/blog/index.html">Blog</a>
+    </nav>
+  </header>
+  <div class="content">
+    <%- body %><br><br>
+    <div class="pages">
+      <% pages.forEach((page) => { %>
+        <article class="page">
+          <a href="/<%= page.location %>">
+            <h2><%= page.title %></h2>
+            <p><%= page.description %></p>
+            <small>By <%= page.author %></small>
+          </a>
+        </article>
+      <% }); %>
+    </div>
+  </div>
+  <footer>
+    Copyright © 2020 The Noah. All rights reserved.
+  </footer>
+</body>
+</html>
