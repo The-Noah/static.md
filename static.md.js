@@ -4,6 +4,7 @@ const glob = require("glob");
 
 const metadataParser = require("markdown-yaml-metadata-parser");
 const lineEndingConverter = require("convert-newline")("lf").string();
+const sass = require("node-sass");
 
 const colorConsole = require("./lib/color-console");
 
@@ -34,8 +35,14 @@ if(!fs.existsSync(config.src)){
 }
 
 fs.emptyDirSync(config.dist);
-fs.copySync(path.join(config.src, "static"), path.join(config.dist, "static"));
+if(fs.existsSync(path.join(config.src, "static"))){
+  colorConsole.info("copying static files");
+  fs.copySync(path.join(config.src, "static"), path.join(config.dist, "static"));
+}else{
+  fs.mkdirSync(path.join(config.dist, "static"));
+}
 
+// render markdown files
 glob("**/*.md", {cwd: config.src}, (err, files) => {
   if(err){
     return colorConsole.error("error: unable to get source markdown files");
@@ -57,5 +64,31 @@ glob("**/*.md", {cwd: config.src}, (err, files) => {
 
   files.forEach((file) => {
     render(path.join(config.src, file), path.join(config.dist, path.parse(file).dir));
+  });
+});
+
+// render scss files
+glob("**/*.scss", {cwd: config.src}, (err, files) => {
+  if(err){
+    return colorConsole.error("error: unable to get source scss files");
+  }
+
+  files.forEach((file) => {
+    sass.render({
+      file: path.join(config.src, file),
+      outputStyle: "compressed"
+    }, (err, result) => {
+      if(err){
+        return colorConsole.error(err);
+      }
+
+      fs.writeFile(path.join(config.dist, "static", path.parse(file).name + ".css"), result.css, (err) => {
+        if(err){
+          return colorConsole.error(err);
+        }
+
+        colorConsole.success(`rendered ${file.base} to css`);
+      });
+    });
   });
 });
